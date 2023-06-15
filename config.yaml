@@ -1,0 +1,12 @@
+#export ENVIRONMENT="prod"
+environment: dev
+
+#export SERVER_PORT="8081"
+server:
+  host: localhost
+  port: 8080
+
+#valores permitidos
+#panic = 5 fatal = 4 error = 3 warn  = 2 info  = 1 debug = 0 trace =-1
+log:
+  level: -1

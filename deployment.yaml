@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: sample
+  template:
+    metadata:
+      labels:
+        app: sample
+    spec:
+      containers:
+        - name: sample
+          image: {{endereço do registro}}/sample:v1
+          ports:
+            - containerPort: 8080
+          env:
+            - name: ENVIRONMENT
+              value: prod
