@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . .
 
 # Compila o código Go
-RUN go build -o viper .
+RUN go build -o sample .
 
 # Define o comando padrão para executar o seu aplicativo quando o contêiner for iniciado
-CMD ["./viper"]
+CMD ["./sample"]
