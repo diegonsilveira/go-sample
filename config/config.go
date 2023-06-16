@@ -37,10 +37,10 @@ func LoadConfig(logger zerolog.Logger) *Configuration {
 		Str("configFile", configFile).
 		Msg("Informações do arquivo de configurações.")
 
-	//sobreescreve os valores do arquivo com variáveis de ambiente (ENV)
+	// Sobreescreve os valores do arquivo com variáveis de ambiente (ENV)
 	viper.AutomaticEnv()
 
-	//altera as variáveis de ambiente (ENV) trocando do padrão do SO (_) para o padrão do viper (.)
+	// Altera as variáveis de ambiente (ENV) trocando do padrão do SO (_) para o padrão do viper (.)
 	viper.SetEnvKeyReplacer(strings.NewReplacer(`.`, `_`))
 
 	err := conf.ReadInConfig()
@@ -59,7 +59,7 @@ func LoadConfig(logger zerolog.Logger) *Configuration {
 		viper.SetDefault("log.level", 1)
 	}
 
-	//seta o level global do log de acordo com a propriedade definida no yaml
+	// Seta o level global do log de acordo com a propriedade definida no yaml
 	zerolog.SetGlobalLevel(zerolog.Level(config.Log.Level))
 
 	logger.Trace().
