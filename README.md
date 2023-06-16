@@ -3,9 +3,24 @@
 #### Informações úteis
 
 Neste sample foi utilizado a lib Viper (https://github.com/spf13/viper) para buscar configurações no arquivo config.yaml (raiz do projeto), a lib ZeroLog (https://github.com/rs/zerolog) para gerar logs em formato JSON, a lib GIN (https://github.com/gin-gonic/gin) para gerar um endpoint que retorna as informações contidas no arquivo de configuração (config.yaml) e o Prometheus (https://github.com/prometheus/client_golang) para gerar métricas.
+
 Além disso, o passo-a-passo a seguir ajuda a subir a imagem em um cluster local utilizando o K3D (https://k3d.io/v5.5.1/).
 
-#### Como subir a aplicação
+#### Como subir a aplicação local
+
+Passo 1 - Comando para subir a aplicação:
+
+    go run main.go
+
+Passo 2 - Endpoint retornando as configurações:
+
+    http://localhost:8080/api/viper
+
+Passo 3 - Endpoint retornando as métricas da aplicação:
+
+    http://localhost:8080/metrics
+
+#### Como subir a aplicação no K3d
 
 PASSO 1 - Comando para buildar o projeto:
 
@@ -35,7 +50,7 @@ PASSO 5 - Implantar aplicação no cluster:
 
 * Com variáveis de ambiente definidas no arquivo substituindo os valores do config.yaml:
 
-    kubectl apply -f deployment.yaml    
+    kubectl apply -f deployment.yaml
 
 PASSO 6 - Expor serviço:
 
@@ -48,9 +63,8 @@ PASSO 7 - Verificar IP da aplicação:
 PASSO 8 - Para acessar a aplicação (external-ip):
 
     http://{{external-ip}}:8080/api/viper
+    http://{{external-ip}}:8080/metrics
 
 PASSO 9 - Remover cluster:
 
     k3d cluster delete my-cluster
-
-
