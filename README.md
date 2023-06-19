@@ -2,7 +2,7 @@
 
 #### Informações úteis
 
-Neste sample foi utilizado a lib Viper (https://github.com/spf13/viper) para buscar configurações no arquivo config.yaml (raiz do projeto), a lib ZeroLog (https://github.com/rs/zerolog) para gerar logs em formato JSON, a lib GIN (https://github.com/gin-gonic/gin) para gerar um endpoint que retorna as informações contidas no arquivo de configuração (config.yaml) e o Prometheus (https://github.com/prometheus/client_golang) para gerar métricas.
+Neste sample foi utilizado a lib Viper (https://github.com/spf13/viper) para buscar configurações no arquivo config.yaml (raiz do projeto), a lib ZeroLog (https://github.com/rs/zerolog) para gerar logs em formato JSON, a lib GIN (https://github.com/gin-gonic/gin) para gerar um endpoint que retorna as informações contidas no arquivo de configuração (config.yaml) e o OpenTelemetry (https://github.com/open-telemetry/opentelemetry-go) em conjunto com o Prometheus para gerar métricas.
 
 Além disso, o passo-a-passo a seguir ajuda a subir a imagem em um cluster local utilizando o K3D (https://k3d.io/v5.5.1/).
 
@@ -18,7 +18,7 @@ Passo 2 - Endpoint retornando as configurações:
 
 Passo 3 - Endpoint retornando as métricas da aplicação:
 
-    http://localhost:8080/metrics
+    http://localhost:8088/metrics
 
 #### Como subir a aplicação no K3d
 

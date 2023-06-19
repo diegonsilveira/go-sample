@@ -19,11 +19,13 @@ const (
 )
 
 func main() {
+	gin.SetMode(gin.ReleaseMode)
+
 	// Configura o OpenTelemetry
 	metrics.ConfigureOpentelemetry()
-	ctx := context.Background()
 
 	// Gera a métrica
+	ctx := context.Background()
 	meter := otel.GetMeterProvider().Meter("request")
 	requestsTotal, err := meter.Int64Counter(
 		"http_requests_total",
