@@ -1,4 +1,4 @@
-## Projeto de testes utilizando o Viper, ZeroLog, GIN, Prometheus e K3d
+## Projeto de testes utilizando o Viper, ZeroLog, GIN, OpenTelemetry e K3d
 
 #### Informações úteis
 
