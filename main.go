@@ -3,18 +3,15 @@ package main
 import (
 	"context"
 	"go-sample/config"
+	"go-sample/metrics"
 	"os"
 
 	"github.com/gin-gonic/gin"
-	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 
-	runtimemetrics "go.opentelemetry.io/contrib/instrumentation/runtime"
 	"go.opentelemetry.io/otel"
-	"go.opentelemetry.io/otel/exporters/prometheus"
 	"go.opentelemetry.io/otel/metric"
-	sdkmetric "go.opentelemetry.io/otel/sdk/metric"
 )
 
 const (
@@ -22,21 +19,23 @@ const (
 )
 
 func main() {
+	// Configura o OpenTelemetry
+	metrics.ConfigureOpentelemetry()
 	ctx := context.Background()
-	configureOpentelemetry()
 
+	// Gera a métrica
 	meter := otel.GetMeterProvider().Meter("request")
 	requestsTotal, err := meter.Int64Counter(
 		"http_requests_total",
 		metric.WithDescription("Total de requisições"),
 	)
 	if err != nil {
-		panic(err)
+		log.Error().Err(err).Msg("Erro ao gerar a métrica http_requests_total.")
 	}
 
 	subLogger := k8sInfo()
 
-	//Carrega as configurações do arquivo config.yaml
+	// Carrega as configurações do arquivo config.yaml
 	conf := config.LoadConfig(subLogger)
 
 	router := gin.Default()
@@ -68,27 +67,4 @@ func k8sInfo() zerolog.Logger {
 		Str("HOSTNAME", podName).Logger()
 
 	return logger
-}
-
-// Expoe as métricas do Prometheus no endpoint localhost:8088/metrics utilizando o OpenTelemetry
-func configureOpentelemetry() {
-	router := gin.Default()
-
-	if err := runtimemetrics.Start(); err != nil {
-		panic(err)
-	}
-
-	exporter, err := prometheus.New()
-	if err != nil {
-		panic(err)
-	}
-	provider := sdkmetric.NewMeterProvider(sdkmetric.WithReader(exporter))
-
-	otel.SetMeterProvider(provider)
-
-	router.GET("/metrics", gin.WrapH(promhttp.Handler()))
-
-	go func() {
-		router.Run(":8088")
-	}()
 }

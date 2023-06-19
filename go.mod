@@ -7,14 +7,14 @@ require (
 	github.com/prometheus/client_golang v1.16.0
 	github.com/rs/zerolog v1.29.1
 	github.com/spf13/viper v1.16.0
+	go.opentelemetry.io/otel/metric v1.16.0
+	go.opentelemetry.io/otel/sdk/metric v0.39.0
 )
 
 require (
 	github.com/go-logr/logr v1.2.4 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
-	go.opentelemetry.io/otel/metric v1.16.0 // indirect
 	go.opentelemetry.io/otel/sdk v1.16.0 // indirect
-	go.opentelemetry.io/otel/sdk/metric v0.39.0 // indirect
 	go.opentelemetry.io/otel/trace v1.16.0 // indirect
 )
 
