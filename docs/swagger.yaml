@@ -1,0 +1,48 @@
+basePath: /api
+definitions:
+  config.Configuration:
+    properties:
+      environment:
+        type: string
+      log:
+        properties:
+          level:
+            type: integer
+        type: object
+      server:
+        properties:
+          host:
+            type: string
+          port:
+            type: integer
+        type: object
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: This is a sample
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: Go Sample - CloudNative Team
+  version: "1.0"
+paths:
+  /viper:
+    get:
+      consumes:
+      - application/json
+      description: Retorna as configurações da aplicação.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/config.Configuration'
+      summary: Retorna as configurações da aplicação.
+      tags:
+      - sample
+swagger: "2.0"

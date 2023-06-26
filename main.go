@@ -2,7 +2,9 @@ package main
 
 import (
 	"context"
+	"go-sample/api"
 	"go-sample/config"
+	_ "go-sample/docs"
 	"go-sample/metrics"
 	"os"
 
@@ -12,12 +14,28 @@ import (
 
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/metric"
+
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 const (
 	endpointViper string = "/api/viper"
 )
 
+// @title           Go Sample - CloudNative Team
+// @version         1.0
+// @description     This is a sample
+
+// @contact.name   API Support
+// @contact.url    http://www.swagger.io/support
+// @contact.email  support@swagger.io
+
+// @license.name  Apache 2.0
+// @license.url   http://www.apache.org/licenses/LICENSE-2.0.html
+
+// @host      localhost:8080
+// @BasePath  /api
 func main() {
 	gin.SetMode(gin.ReleaseMode)
 
@@ -43,16 +61,14 @@ func main() {
 	router := gin.Default()
 
 	router.GET(endpointViper, func(c *gin.Context) {
-		c.JSON(200, conf)
-		log.Trace().
-			Str("endpoint", endpointViper).
-			Msg("Método GET executado com sucesso.")
-
-		// Incrementa a métrica de contagem de solicitações
-		requestsTotal.Add(ctx, 1)
+		api.GetConfigHandler(c, conf, requestsTotal, ctx, endpointViper)
 	})
 
+	// Gera o portal do Swagger (http://localhost:8080/swagger/index.html)
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+
 	router.Run(":8080")
+
 }
 
 // Busca e retorna informações do cluster/pod como um subnivel personalizado de log
