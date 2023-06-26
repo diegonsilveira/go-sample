@@ -1,8 +1,8 @@
-## Projeto de testes utilizando o Viper, ZeroLog, GIN, OpenTelemetry e K3d
+## Projeto de testes utilizando o Viper, ZeroLog, GIN, OpenTelemetry Swaggo e K3d
 
 #### Informações úteis
 
-Neste sample foi utilizado a lib Viper (https://github.com/spf13/viper) para buscar configurações no arquivo config.yaml (raiz do projeto), a lib ZeroLog (https://github.com/rs/zerolog) para gerar logs em formato JSON, a lib GIN (https://github.com/gin-gonic/gin) para gerar um endpoint que retorna as informações contidas no arquivo de configuração (config.yaml), o Swag (https://github.com/swaggo/swag) para documentar as APIs e o OpenTelemetry (https://github.com/open-telemetry/opentelemetry-go) em conjunto com o Prometheus para gerar métricas.
+Neste sample foi utilizado a lib Viper (https://github.com/spf13/viper) para buscar configurações no arquivo config.yaml (raiz do projeto), a lib ZeroLog (https://github.com/rs/zerolog) para gerar logs em formato JSON, a lib GIN (https://github.com/gin-gonic/gin) para gerar um endpoint que retorna as informações contidas no arquivo de configuração (config.yaml), o Swaggo (https://github.com/swaggo/swag) para documentar as APIs e o OpenTelemetry (https://github.com/open-telemetry/opentelemetry-go) em conjunto com o Prometheus para gerar métricas.
 
 Além disso, o passo-a-passo a seguir ajuda a subir a imagem em um cluster local utilizando o K3D (https://k3d.io/v5.5.1/).
 
