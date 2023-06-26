@@ -1,12 +1,46 @@
 ## Projeto de testes utilizando o Viper, ZeroLog, GIN, OpenTelemetry Swaggo e K3d
 
-#### Informações úteis
+### Informações úteis
 
-Neste sample foi utilizado a lib Viper (https://github.com/spf13/viper) para buscar configurações no arquivo config.yaml (raiz do projeto), a lib ZeroLog (https://github.com/rs/zerolog) para gerar logs em formato JSON, a lib GIN (https://github.com/gin-gonic/gin) para gerar um endpoint que retorna as informações contidas no arquivo de configuração (config.yaml), o Swaggo (https://github.com/swaggo/swag) para documentar as APIs e o OpenTelemetry (https://github.com/open-telemetry/opentelemetry-go) em conjunto com o Prometheus para gerar métricas.
+Neste sample foram utilizadas algumas bibliotecas para desenvolvimento de experimentações. A seguir a lista de libs:
 
-Além disso, o passo-a-passo a seguir ajuda a subir a imagem em um cluster local utilizando o K3D (https://k3d.io/v5.5.1/).
+#### Viper
 
-#### Como subir a aplicação local
+Busca de configurações no arquivo config.yaml e possibilidade de carregamento por variáveis de ambiente.
+
+> Documentação: https://github.com/spf13/viper
+
+#### ZeroLog
+
+Geração de logs em formato JSON.
+
+> Documentação: https://github.com/rs/zerolog
+
+#### GIN
+
+Geração do endpoint para testes que retorna as informações contidas no arquivo de configuração.
+
+> Documentação: https://github.com/gin-gonic/gin
+
+#### Swaggo/Swag
+
+Geração da documentação da API de testes.
+
+> Documentação: https://github.com/swaggo/swag
+
+#### OpenTelemetry e Prometheus
+
+Geração e publicação de métricas.
+
+> Documentações: https://github.com/open-telemetry/opentelemetry-go
+
+#### K3D
+
+Utilizado para gerar um cluster local para testes.
+
+> Documentação: https://k3d.io/v5.5.1/
+
+### Como subir a aplicação local
 
 Passo 1 - Comando para subir a aplicação:
 
@@ -26,7 +60,7 @@ Passo 4 - Acesso a documentação das APIs (Swagger)
 
 > Para atualizar as documentações, executar o comando "swag init".
 
-#### Como subir a aplicação no K3d
+### Como subir a aplicação no K3d
 
 PASSO 1 - Comando para buildar o projeto:
 
